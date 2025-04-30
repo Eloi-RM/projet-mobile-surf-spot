@@ -1,3 +1,7 @@
 package com.example.surfspot.viewmodel;
 
-public class SpotDetailViewModel{}
+import androidx.lifecycle.ViewModel;
+
+public class SpotDetailViewModel extends ViewModel {
+
+}
