@@ -23,21 +23,15 @@ import com.example.surfspot.viewmodel.SpotDetailViewModel;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-
 
 public class MainActivity extends AppCompatActivity implements SurfSpotListFragment.OnSpotSelectedListener {
-    interface RequestSurfSpot {
-        @GET("/v0/appLzFwKNna0K8m27/Surf%20Destinations/{id}")
-        Call<SurfSpot> getSpotById(@Path("id") String id);
-    }
 
     private static final String API_TOKEN = "pat8izimFSK0Fww6B.5176ea7c229d33209d88c01bca6a7cec2b0c002d503937f5ccb8f21616c3bb89";
+    private static final String BASE_URL = "https://api.airtable.com";
+
+    private SpotDetailViewModel viewModel;
 
     public static Retrofit getRetrofitInstance() {
         // Créer un client OkHttp avec un intercepteur pour ajouter l'en-tête d'autorisation
@@ -51,14 +45,13 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
                     return chain.proceed(request);
                 })
                 .build();
+
         return new Retrofit.Builder()
-                .baseUrl("https://api.airtable.com")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
     }
-
-    private SpotDetailViewModel viewModel;  // Déclarée ici, initialisée dans onCreate()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,29 +59,8 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Initialiser le ViewModel ici (contexte valide à ce stade)
+        // Initialiser le ViewModel
         viewModel = new ViewModelProvider(this).get(SpotDetailViewModel.class);
-
-        RequestSurfSpot requestSurfSpot = getRetrofitInstance().create(RequestSurfSpot.class);
-
-        requestSurfSpot.getSpotById("rec5aF9TjMjBicXCK").enqueue(new Callback<SurfSpot>() {
-            @Override
-            public void onResponse(Call<SurfSpot> call, retrofit2.Response<SurfSpot> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    SurfSpot spot = response.body();
-                    // Traiter les données du spot ici
-                    Log.d(TAG, "Spot yaourt");
-                } else {
-                    Log.e(TAG, "Spot framboise: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SurfSpot> call, Throwable t) {
-                Log.e(TAG, "Spot camembert", t);
-            }
-        });
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -134,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
 
     @Override
     public void onSpotSelected(String spotId) {
+        // Charger les détails du spot dans le ViewModel
+        viewModel.loadSurfSpot(spotId);
+
         SpotDetailFragment detailFragment = SpotDetailFragment.newInstance(spotId);
 
         getSupportFragmentManager().beginTransaction()
@@ -147,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        Log.d(TAG, "onSpotSelected: Titre changé pour 'Détails du spot'");
+        Log.d(TAG, "onSpotSelected: Titre changé pour 'Détails du spot', ID: " + spotId);
     }
 
     @Override

@@ -1,27 +1,32 @@
 package com.example.surfspot.ui.detail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.surfspot.R;
 import com.example.surfspot.model.SurfSpot;
-import com.example.surfspot.repository.SurfSpotRepository;
+import com.example.surfspot.viewmodel.SpotDetailViewModel;
 
 public class SpotDetailFragment extends Fragment {
-
+    private static final String TAG = "SpotDetailFragment";
     private static final String ARG_SPOT_ID = "spot_id";
 
     private String spotId;
-    private SurfSpotRepository repository;
+    private SpotDetailViewModel viewModel;
 
     private ImageView spotImageView;
     private TextView nameTextView;
@@ -43,9 +48,8 @@ public class SpotDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             spotId = getArguments().getString(ARG_SPOT_ID);
+            Log.d(TAG, "Spot ID reçu: " + spotId);
         }
-
-        repository = SurfSpotRepository.getInstance(requireContext());
     }
 
     @Nullable
@@ -62,35 +66,86 @@ public class SpotDetailFragment extends Fragment {
         difficultyTextView = view.findViewById(R.id.detail_difficulty);
         seasonTextView = view.findViewById(R.id.detail_season);
 
-        // Observer les données
-        repository.getSurfSpotsLiveData().observe(getViewLifecycleOwner(), surfSpots -> {
-            loadSpotDetails();
-        });
+        // Obtenir le ViewModel de l'activité parente
+        viewModel = new ViewModelProvider(requireActivity()).get(SpotDetailViewModel.class);
 
-        // Charger les détails immédiatement si les données sont déjà disponibles
-        loadSpotDetails();
+        // Observer les changements de données
+        viewModel.getSelectedSpot().observe(getViewLifecycleOwner(), this::updateUI);
+
+        // Charger les détails du spot si on a l'ID
+        if (spotId != null && !spotId.isEmpty()) {
+            viewModel.loadSurfSpot(spotId);
+        }
 
         return view;
     }
 
-    private void loadSpotDetails() {
-        SurfSpot spot = repository.getSurfSpotById(spotId);
+    private void updateUI(SurfSpot spot) {
         if (spot != null) {
-            nameTextView.setText(spot.getName());
-            locationTextView.setText(spot.getLocation());
-            descriptionTextView.setText(spot.getDescription());
+            Log.d(TAG, "Mise à jour de l'UI avec le spot: " + spot.getName());
 
+            // Mettre à jour les champs texte
+            nameTextView.setText(spot.getName());
+
+            if (spot.getLocation() != null && !spot.getLocation().isEmpty()) {
+                locationTextView.setText(spot.getLocation());
+                locationTextView.setVisibility(View.VISIBLE);
+            } else {
+                locationTextView.setVisibility(View.GONE);
+            }
+
+            if (spot.getDescription() != null && !spot.getDescription().isEmpty()) {
+                descriptionTextView.setText(spot.getDescription());
+                descriptionTextView.setVisibility(View.VISIBLE);
+            } else {
+                descriptionTextView.setVisibility(View.GONE);
+            }
+
+            // Mettre à jour les autres champs si disponibles
+            if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
+                difficultyTextView.setText("Difficulté: " + spot.getDifficulty());
+                difficultyTextView.setVisibility(View.VISIBLE);
+            } else {
+                difficultyTextView.setVisibility(View.GONE);
+            }
+
+            if (spot.getSeason() != null && !spot.getSeason().isEmpty()) {
+                seasonTextView.setText("Saison: " + spot.getSeason());
+                seasonTextView.setVisibility(View.VISIBLE);
+            } else {
+                seasonTextView.setVisibility(View.GONE);
+            }
 
             // Charger l'image
             String imageUrl = spot.getFirstImageUrl();
-            if (imageUrl != null) {
-                Glide.with(this)
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Log.d(TAG, "Chargement de l'image: " + imageUrl);
+
+                // Vérifier si l'URL est au format Airtable
+                if (imageUrl.contains("amazonaws.com") && !imageUrl.contains("?")) {
+                    // Ajouter le paramètre pour une version large de l'image
+                    imageUrl = imageUrl + "?w=800";
+                }
+
+                RequestOptions requestOptions = new RequestOptions()
+                        .placeholder(R.drawable.placeholder_surf) // Créez un placeholder dans res/drawable
+                        .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+                Glide.with(requireContext())
                         .load(imageUrl)
-
+                        .apply(requestOptions)
                         .into(spotImageView);
-            } else {
 
+                spotImageView.setVisibility(View.VISIBLE);
+            } else {
+                Log.w(TAG, "Pas d'URL d'image pour ce spot");
+                spotImageView.setVisibility(View.GONE);
+                // Ou afficher une image par défaut
+                // spotImageView.setImageResource(R.drawable.no_image);
             }
+        } else {
+            Log.e(TAG, "Le spot est null, impossible de mettre à jour l'UI");
+            Toast.makeText(requireContext(), "Impossible de charger les détails du spot", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -1,10 +1,11 @@
 package com.example.surfspot.model;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class SurfSpot {
-    private String id; // Pour stocker l'ID record d'Airtable
+    private String id;
 
     @SerializedName("Name")
     private String name;
@@ -19,27 +20,104 @@ public class SurfSpot {
     private String difficulty;
 
     @SerializedName("Best Season")
-    private String bestSeason;
+    private String season;
 
-    @SerializedName("Images")
-    private List<ImageAttachment> images;
+    @SerializedName("Photos")
+    private List<Image> photos;
 
-    // Classe pour gérer les pièces jointes d'Airtable
-    public static class ImageAttachment {
-        private String id;
+    // Classe interne pour représenter les images d'Airtable
+    public static class Image {
+        @SerializedName("url")
         private String url;
+
+        @SerializedName("filename")
         private String filename;
+
+        @SerializedName("id")
+        private String id;
+
+        @SerializedName("size")
         private long size;
+
+        @SerializedName("type")
         private String type;
 
-        public String getId() { return id; }
-        public String getUrl() { return url; }
-        public String getFilename() { return filename; }
-        public long getSize() { return size; }
-        public String getType() { return type; }
+        @SerializedName("thumbnails")
+        private Thumbnails thumbnails;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getFilename() {
+            return filename;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public long getSize() {
+            return size;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public Thumbnails getThumbnails() {
+            return thumbnails;
+        }
     }
 
-    // Getters et setters
+    // Classe pour les miniatures
+    public static class Thumbnails {
+        @SerializedName("small")
+        private ThumbnailSize small;
+
+        @SerializedName("large")
+        private ThumbnailSize large;
+
+        @SerializedName("full")
+        private ThumbnailSize full;
+
+        public ThumbnailSize getSmall() {
+            return small;
+        }
+
+        public ThumbnailSize getLarge() {
+            return large;
+        }
+
+        public ThumbnailSize getFull() {
+            return full;
+        }
+    }
+
+    public static class ThumbnailSize {
+        @SerializedName("url")
+        private String url;
+
+        @SerializedName("width")
+        private int width;
+
+        @SerializedName("height")
+        private int height;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+    }
+
+    // Getters et Setters
     public String getId() {
         return id;
     }
@@ -49,7 +127,7 @@ public class SurfSpot {
     }
 
     public String getName() {
-        return name;
+        return name != null ? name : "Sans nom";
     }
 
     public String getLocation() {
@@ -64,19 +142,29 @@ public class SurfSpot {
         return difficulty;
     }
 
-    public String getBestSeason() {
-        return bestSeason;
+    public String getSeason() {
+        return season;
     }
 
-    public List<ImageAttachment> getImages() {
-        return images;
+    public List<Image> getPhotos() {
+        return photos;
     }
 
-    // Méthode utilitaire pour obtenir l'URL de la première image (ou null)
+    // Méthode utilitaire pour obtenir la première URL d'image
     public String getFirstImageUrl() {
-        if (images != null && !images.isEmpty()) {
-            return images.get(0).url;
+        if (photos != null && !photos.isEmpty() && photos.get(0) != null) {
+            return photos.get(0).getUrl();
         }
         return null;
+    }
+
+    // Méthode pour obtenir une miniature de taille large de la première photo
+    public String getFirstImageLargeUrl() {
+        if (photos != null && !photos.isEmpty() && photos.get(0) != null &&
+                photos.get(0).getThumbnails() != null &&
+                photos.get(0).getThumbnails().getLarge() != null) {
+            return photos.get(0).getThumbnails().getLarge().getUrl();
+        }
+        return getFirstImageUrl(); // Retourne l'URL originale si la miniature n'est pas disponible
     }
 }
