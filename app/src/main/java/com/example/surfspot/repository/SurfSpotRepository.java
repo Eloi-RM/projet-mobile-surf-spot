@@ -84,7 +84,7 @@ public class SurfSpotRepository {
                 }
 
                 // Création de l'objet SurfSpot
-                SurfSpot spot = new SurfSpot(i, surfBreak, photoUrl, address, destination, state, difficulty, seasonStart, seasonEnd);
+                SurfSpot spot = new SurfSpot(i, surfBreak, photoUrl, address, "destination", "state", 7, "seasonStart", "seasonEnd");
                 surfSpots.add(spot);
             }
 
