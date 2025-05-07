@@ -54,4 +54,52 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("com.google.code.gson:gson:2.8.9")
+    // Dépendances de base Android
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.11.0")
+
+    // RecyclerView pour la liste des spots
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // CardView pour les items de la liste
+    implementation("androidx.cardview:cardview:1.0.0")
+
+    // SwipeRefreshLayout pour le rafraîchissement par tirage
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // Architecture Components - ViewModel et LiveData
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
+    // Retrofit pour les appels API REST
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // OkHttp pour les requêtes HTTP
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")  // optionnel pour le logging
+
+    // Gson pour le parsing JSON
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // Glide pour le chargement et la mise en cache des images
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Fragment - pour la gestion avancée des fragments
+    implementation("androidx.fragment:fragment:1.6.2")
+
+    // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+
+    // Edge-to-Edge support
+    implementation("androidx.activity:activity:1.8.2")
+
+    // Tests
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

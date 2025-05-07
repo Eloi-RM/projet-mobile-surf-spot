@@ -1,104 +1,82 @@
 package com.example.surfspot.model;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class SurfSpot {
-    private long id;
-    private String surfBreak;
-    private String photos;
-    private String address;
-    private String destination;
-    private String state;
-    private int difficulty;
-    private String seasonStart;
-    private String seasonEnd;
+    private String id; // Pour stocker l'ID record d'Airtable
 
-    public SurfSpot() {
-        // Constructeur vide requis pour Firebase/JSON parsing
+    @SerializedName("Name")
+    private String name;
+
+    @SerializedName("Location")
+    private String location;
+
+    @SerializedName("Description")
+    private String description;
+
+    @SerializedName("Difficulty")
+    private String difficulty;
+
+    @SerializedName("Best Season")
+    private String bestSeason;
+
+    @SerializedName("Images")
+    private List<ImageAttachment> images;
+
+    // Classe pour gérer les pièces jointes d'Airtable
+    public static class ImageAttachment {
+        private String id;
+        private String url;
+        private String filename;
+        private long size;
+        private String type;
+
+        public String getId() { return id; }
+        public String getUrl() { return url; }
+        public String getFilename() { return filename; }
+        public long getSize() { return size; }
+        public String getType() { return type; }
     }
 
-    public SurfSpot(long id, String surfBreak, String photos, String address, String destination, String state, int difficulty, String seasonStart, String seasonEnd) {
-        this.id = id;
-        this.surfBreak = surfBreak;
-        this.photos = photos;
-        this.address = address;
-        this.destination = destination;
-        this.state = state;
-        this.difficulty = difficulty;
-        this.seasonStart = seasonStart;
-        this.seasonEnd = seasonEnd;
-    }
-
-    // Getters et Setters
-    public long getId() {
+    // Getters et setters
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getSurfBreak() {
-        return surfBreak;
+    public String getName() {
+        return name;
     }
 
-    public void setSurfBreak(String surfBreak) {
-        this.surfBreak = surfBreak;
+    public String getLocation() {
+        return location;
     }
 
-    public String getPhotos() {
-        return photos;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPhotos(String photos) {
-        this.photos = photos;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public int getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
+    public String getBestSeason() {
+        return bestSeason;
     }
 
-    public String getSeasonStart() {
-        return seasonStart;
+    public List<ImageAttachment> getImages() {
+        return images;
     }
 
-    public void setSeasonStart(String seasonStart) {
-        this.seasonStart = seasonStart;
-    }
-
-    public String getSeasonEnd() {
-        return seasonEnd;
-    }
-
-    public void setSeasonEnd(String seasonEnd) {
-        this.seasonEnd = seasonEnd;
+    // Méthode utilitaire pour obtenir l'URL de la première image (ou null)
+    public String getFirstImageUrl() {
+        if (images != null && !images.isEmpty()) {
+            return images.get(0).url;
+        }
+        return null;
     }
 }

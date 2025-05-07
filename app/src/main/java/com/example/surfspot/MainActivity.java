@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
 
         RequestSurfSpot requestSurfSpot = getRetrofitInstance().create(RequestSurfSpot.class);
 
-        requestSurfSpot.getSpotById("1").enqueue(new Callback<SurfSpot>() {
+        requestSurfSpot.getSpotById("rec5aF9TjMjBicXCK").enqueue(new Callback<SurfSpot>() {
             @Override
             public void onResponse(Call<SurfSpot> call, retrofit2.Response<SurfSpot> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
     }
 
     @Override
-    public void onSpotSelected(long spotId) {
+    public void onSpotSelected(String spotId) {
         SpotDetailFragment detailFragment = SpotDetailFragment.newInstance(spotId);
 
         getSupportFragmentManager().beginTransaction()

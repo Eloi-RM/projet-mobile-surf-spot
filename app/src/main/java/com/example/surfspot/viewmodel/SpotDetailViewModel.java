@@ -19,7 +19,7 @@ public class SpotDetailViewModel extends AndroidViewModel {
         repository = SurfSpotRepository.getInstance(application);
     }
 
-    public void loadSurfSpot(Long spotId) {
+    public void loadSurfSpot(String spotId) {
         SurfSpot spot = repository.getSurfSpotById(spotId);
         selectedSpot.setValue(spot);
     }

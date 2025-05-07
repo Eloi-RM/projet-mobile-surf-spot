@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.surfspot.R;
 import com.example.surfspot.model.SurfSpot;
@@ -15,19 +17,13 @@ import com.example.surfspot.model.SurfSpot;
 import java.util.List;
 
 public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.SurfSpotViewHolder> {
-    private List<SurfSpot> surfSpots;
-    private Context context;
 
-    // Interface fonctionnelle pour les clics
-    public interface OnItemClickListener {
-        void onItemClick(long spotId);
-    }
-
+    private final Context context;
+    private final List<SurfSpot> surfSpots;
     private OnItemClickListener listener;
 
-    // Méthode pour définir le listener
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+    public interface OnItemClickListener {
+        void onItemClick(String spotId);
     }
 
     public SurfSpotAdapter(Context context, List<SurfSpot> surfSpots) {
@@ -35,53 +31,70 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.SurfSp
         this.surfSpots = surfSpots;
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public SurfSpotViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_surf_spot, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_surf_spot, parent, false);
         return new SurfSpotViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SurfSpotViewHolder holder, int position) {
         SurfSpot spot = surfSpots.get(position);
-        holder.tvBreakType.setText(spot.getSurfBreak());
-        holder.tvAddress.setText(spot.getAddress());
-
-        Glide.with(context)
-                .load(spot.getPhotos())
-                .placeholder(R.drawable.placeholder_surf)
-                .into(holder.ivPhoto);
-
-        // Configurer le clic sur l'élément
-        holder.itemView.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onItemClick(spot.getId());
-            }
-        });
+        holder.bind(spot, listener);
     }
 
     @Override
     public int getItemCount() {
-        return surfSpots != null ? surfSpots.size() : 0;
+        return surfSpots.size();
     }
 
+    // Méthode pour mettre à jour les données
     public void updateData(List<SurfSpot> newSpots) {
-        this.surfSpots = newSpots;
+        surfSpots.clear();
+        surfSpots.addAll(newSpots);
         notifyDataSetChanged();
     }
 
     static class SurfSpotViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivPhoto;
-        TextView tvBreakType;
-        TextView tvAddress;
+        private final TextView nameTextView;
+        private final TextView locationTextView;
+        private final TextView difficultyTextView;
+        private final ImageView spotImageView;
 
-        SurfSpotViewHolder(@NonNull View itemView) {
+        public SurfSpotViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivPhoto = itemView.findViewById(R.id.iv_photo);
-            tvBreakType = itemView.findViewById(R.id.tv_break_type);
-            tvAddress = itemView.findViewById(R.id.tv_address);
+            nameTextView = itemView.findViewById(R.id.spot_name);
+            locationTextView = itemView.findViewById(R.id.spot_location);
+            difficultyTextView = itemView.findViewById(R.id.spot_difficulty);
+            spotImageView = itemView.findViewById(R.id.spot_image);
+        }
+
+        public void bind(SurfSpot spot, OnItemClickListener listener) {
+            nameTextView.setText(spot.getName());
+            locationTextView.setText(spot.getLocation());
+            difficultyTextView.setText(spot.getDifficulty());
+
+            // Charger l'image avec Glide
+            String imageUrl = spot.getFirstImageUrl();
+            if (imageUrl != null) {
+                Glide.with(itemView.getContext())
+                        .load(imageUrl)
+
+                        .into(spotImageView);
+            } else {
+            }
+
+            // Définir le clic sur l'élément
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(spot.getId());
+                }
+            });
         }
     }
 }
