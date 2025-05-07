@@ -16,11 +16,22 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.surfspot.model.SurfSpot;
 import com.example.surfspot.ui.detail.SpotDetailFragment;
 import com.example.surfspot.ui.detail.SurfSpotListFragment;
 import com.example.surfspot.viewmodel.SpotDetailViewModel;
 
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+
 public class MainActivity extends AppCompatActivity implements SurfSpotListFragment.OnSpotSelectedListener {
+
+    interface requestAllSurfSpots{
+        @GET("api/oskour/{id}")
+        Call<SurfSpot> getSpotById(@Path("id") int id);
+    }
 
     private SpotDetailViewModel viewModel;  // Déclarée ici, initialisée dans onCreate()
 
