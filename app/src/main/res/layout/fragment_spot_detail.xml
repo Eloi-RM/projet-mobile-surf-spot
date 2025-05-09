@@ -89,5 +89,16 @@
             app:layout_constraintTop_toBottomOf="@+id/detail_difficulty"
             tools:text="Meilleure saison: Été" />
 
+        <TextView
+            android:id="@+id/detail_end_season"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_season"
+            tools:text="Meilleure saison: Été" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

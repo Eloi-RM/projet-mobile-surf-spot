@@ -35,6 +35,8 @@ public class SpotDetailFragment extends Fragment {
     private TextView difficultyTextView;
     private TextView seasonTextView;
 
+    private TextView seasonEndTextView;
+
     public static SpotDetailFragment newInstance(String spotId) {
         SpotDetailFragment fragment = new SpotDetailFragment();
         Bundle args = new Bundle();
@@ -65,6 +67,7 @@ public class SpotDetailFragment extends Fragment {
         descriptionTextView = view.findViewById(R.id.detail_description);
         difficultyTextView = view.findViewById(R.id.detail_difficulty);
         seasonTextView = view.findViewById(R.id.detail_season);
+        seasonEndTextView = view.findViewById(R.id.detail_end_season);
 
         // Obtenir le ViewModel de l'activité parente
         viewModel = new ViewModelProvider(requireActivity()).get(SpotDetailViewModel.class);
@@ -103,18 +106,39 @@ public class SpotDetailFragment extends Fragment {
 
             // Mettre à jour les autres champs si disponibles
             if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
-                difficultyTextView.setText("Difficulté: " + spot.getDifficulty());
+                int diff = Integer.parseInt(spot.getDifficulty());
+                String myString = "";
+                for(int i=0; i < 5; i++) {
+                    if(i < diff) {
+                        myString += "🟦";
+                    }
+                    else {
+                        myString += "⬛";
+                    }
+
+                }
+
+                difficultyTextView.setText("Niveau de difficulté : " + myString);
                 difficultyTextView.setVisibility(View.VISIBLE);
             } else {
                 difficultyTextView.setVisibility(View.GONE);
             }
 
             if (spot.getSeason() != null && !spot.getSeason().isEmpty()) {
-                seasonTextView.setText("Saison: " + spot.getSeason());
+                seasonTextView.setText("Début de la saison : " + spot.getSeason());
                 seasonTextView.setVisibility(View.VISIBLE);
             } else {
                 seasonTextView.setVisibility(View.GONE);
             }
+
+            if (spot.getSeasonEnd() != null && !spot.getSeasonEnd().isEmpty()) {
+                seasonEndTextView.setText("Fin de la saison : " + spot.getSeasonEnd());
+                seasonEndTextView.setVisibility(View.VISIBLE);
+            } else {
+                seasonEndTextView.setVisibility(View.GONE);
+            }
+
+
 
             // Charger l'image
             String imageUrl = spot.getFirstImageUrl();

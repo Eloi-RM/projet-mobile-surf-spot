@@ -22,6 +22,9 @@ public class SurfSpot {
     @SerializedName("Peak Surf Season Begins")
     private String season;
 
+    @SerializedName("Peak Surf Season Ends")
+    private String seasonEnd;
+
     @SerializedName("Photos")
     private List<Image> photos;
 
@@ -144,6 +147,10 @@ public class SurfSpot {
 
     public String getSeason() {
         return season;
+    }
+
+    public String getSeasonEnd() {
+        return seasonEnd;
     }
 
     public List<Image> getPhotos() {
