@@ -57,17 +57,6 @@
             app:layout_constraintTop_toBottomOf="@+id/detail_location" />
 
         <TextView
-            android:id="@+id/detail_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_description_label"
-            tools:text="Description détaillée du spot de surf" />
-
-        <TextView
             android:id="@+id/detail_difficulty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,7 +64,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_description"
+            app:layout_constraintTop_toBottomOf="@+id/detail_description_label"
             tools:text="Difficulté: Intermédiaire" />
 
         <TextView

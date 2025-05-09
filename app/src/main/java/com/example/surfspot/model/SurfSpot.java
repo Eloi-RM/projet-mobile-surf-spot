@@ -13,9 +13,6 @@ public class SurfSpot {
     @SerializedName("Address")
     private String location;
 
-    @SerializedName("Destination State/Country")
-    private String description;
-
     @SerializedName("Difficulty Level")
     private String difficulty;
 
@@ -137,9 +134,6 @@ public class SurfSpot {
         return location;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
     public String getDifficulty() {
         return difficulty;

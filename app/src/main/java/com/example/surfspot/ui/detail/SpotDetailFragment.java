@@ -31,7 +31,6 @@ public class SpotDetailFragment extends Fragment {
     private ImageView spotImageView;
     private TextView nameTextView;
     private TextView locationTextView;
-    private TextView descriptionTextView;
     private TextView difficultyTextView;
     private TextView seasonTextView;
 
@@ -64,7 +63,6 @@ public class SpotDetailFragment extends Fragment {
         spotImageView = view.findViewById(R.id.detail_image);
         nameTextView = view.findViewById(R.id.detail_name);
         locationTextView = view.findViewById(R.id.detail_location);
-        descriptionTextView = view.findViewById(R.id.detail_description);
         difficultyTextView = view.findViewById(R.id.detail_difficulty);
         seasonTextView = view.findViewById(R.id.detail_season);
         seasonEndTextView = view.findViewById(R.id.detail_end_season);
@@ -97,28 +95,11 @@ public class SpotDetailFragment extends Fragment {
                 locationTextView.setVisibility(View.GONE);
             }
 
-            if (spot.getDescription() != null && !spot.getDescription().isEmpty()) {
-                descriptionTextView.setText(spot.getDescription());
-                descriptionTextView.setVisibility(View.VISIBLE);
-            } else {
-                descriptionTextView.setVisibility(View.GONE);
-            }
-
             // Mettre à jour les autres champs si disponibles
             if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
-                int diff = Integer.parseInt(spot.getDifficulty());
-                String myString = "";
-                for(int i=0; i < 5; i++) {
-                    if(i < diff) {
-                        myString += "🟦";
-                    }
-                    else {
-                        myString += "⬛";
-                    }
+                String diff = displayDifficulty(Integer.parseInt(spot.getDifficulty()));
 
-                }
-
-                difficultyTextView.setText("Niveau de difficulté : " + myString);
+                difficultyTextView.setText("Niveau de difficulté : " + diff);
                 difficultyTextView.setVisibility(View.VISIBLE);
             } else {
                 difficultyTextView.setVisibility(View.GONE);
@@ -171,5 +152,20 @@ public class SpotDetailFragment extends Fragment {
             Log.e(TAG, "Le spot est null, impossible de mettre à jour l'UI");
             Toast.makeText(requireContext(), "Impossible de charger les détails du spot", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static String displayDifficulty(int difficulty) {
+
+        String myString = "";
+        for(int i=0; i < 5; i++) {
+            if(i < difficulty) {
+                myString += "\uD83C\uDF0A";
+            }
+            else {
+                myString += "\u25EF";
+            }
+            myString += " ";
+        }
+        return myString;
     }
 }

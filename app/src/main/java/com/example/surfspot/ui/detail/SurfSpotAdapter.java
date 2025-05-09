@@ -1,5 +1,7 @@
 package com.example.surfspot.ui.detail;
 
+import static com.example.surfspot.ui.detail.SpotDetailFragment.displayDifficulty;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,6 +64,14 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
             holder.locationTextView.setVisibility(View.GONE);
         }
 
+        if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
+            String diff = displayDifficulty(Integer.parseInt(spot.getDifficulty()));
+            holder.difficultyTextView.setText(diff);
+            holder.difficultyTextView.setVisibility(View.VISIBLE);
+        } else {
+            holder.difficultyTextView.setVisibility(View.GONE);
+        }
+
         // Charger l'image avec Glide
         String imageUrl = spot.getFirstImageUrl();
         if (imageUrl != null && !imageUrl.isEmpty()) {
@@ -114,12 +124,15 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
         final TextView nameTextView;
         final TextView locationTextView;
 
+        final TextView difficultyTextView;
+
         ViewHolder(View view) {
             super(view);
             cardView = view.findViewById(R.id.card_view);
             imageView = view.findViewById(R.id.spot_image);
             nameTextView = view.findViewById(R.id.spot_name);
             locationTextView = view.findViewById(R.id.spot_location);
+            difficultyTextView = view.findViewById(R.id.spot_difficulty);
         }
     }
 }
