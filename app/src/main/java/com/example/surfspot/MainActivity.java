@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
                     ActionBar actionBar = getSupportActionBar();
                     if (actionBar != null) {
                         actionBar.setTitle("Spots de Surf");
+                        actionBar.setDisplayHomeAsUpEnabled(false);
                         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                             actionBar.setDisplayHomeAsUpEnabled(false);
                         }
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle("Spots de Surf");
+                actionBar.setDisplayHomeAsUpEnabled(false);
                 if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                     actionBar.setDisplayHomeAsUpEnabled(false);
                 }

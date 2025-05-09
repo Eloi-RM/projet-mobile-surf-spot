@@ -7,19 +7,19 @@ import java.util.List;
 public class SurfSpot {
     private String id;
 
-    @SerializedName("Name")
+    @SerializedName("Destination")
     private String name;
 
-    @SerializedName("Location")
+    @SerializedName("Address")
     private String location;
 
-    @SerializedName("Description")
+    @SerializedName("Destination State/Country")
     private String description;
 
-    @SerializedName("Difficulty")
+    @SerializedName("Difficulty Level")
     private String difficulty;
 
-    @SerializedName("Best Season")
+    @SerializedName("Peak Surf Season Begins")
     private String season;
 
     @SerializedName("Photos")
