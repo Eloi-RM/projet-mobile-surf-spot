@@ -4,4 +4,5 @@
     <string name="spot_detail_title">Détails du spot</string>
     <string name="break_type_label">Type de vague:</string>
     <string name="address_label">Adresse:</string>
+    <string name="search">search</string>
 </resources>
