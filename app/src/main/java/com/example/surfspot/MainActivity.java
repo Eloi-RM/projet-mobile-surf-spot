@@ -107,13 +107,6 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.searchview,menu);
-        MenuItem menuItem = menu.findItem(R.id.search_icon);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public void onSpotSelected(String spotId) {
         // Charger les détails du spot dans le ViewModel
         viewModel.loadSurfSpot(spotId);
