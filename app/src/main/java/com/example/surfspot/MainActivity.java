@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -103,6 +104,13 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.searchview,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_icon);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
