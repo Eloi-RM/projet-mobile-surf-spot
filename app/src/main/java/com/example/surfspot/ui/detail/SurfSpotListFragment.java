@@ -3,12 +3,16 @@ package com.example.surfspot.ui.detail;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +35,9 @@ public class SurfSpotListFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public SurfSpotListFragment() {
-        // Constructeur vide requis pour Fragment
+        // Constructeur vide requis
     }
 
-    // Interface pour communiquer avec l'activité
     public interface OnSpotSelectedListener {
         void onSpotSelected(String spotId);
     }
@@ -45,50 +48,49 @@ public class SurfSpotListFragment extends Fragment {
         try {
             callback = (OnSpotSelectedListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " doit implémenter OnSpotSelectedListener");
+            throw new ClassCastException(context.toString() + " doit implémenter OnSpotSelectedListener");
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true); // nécessaire pour ajouter un menu (SearchView)
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_surf_spot_list, container, false);
 
         requireActivity().setTitle(R.string.app_name);
 
-        // Initialiser les vues
         recyclerView = view.findViewById(R.id.recycler_view);
         progressBar = view.findViewById(R.id.progress_bar);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        // Initialiser l'adaptateur avec une liste vide
         adapter = new SurfSpotAdapter(requireContext(), new ArrayList<>());
         adapter.setOnItemClickListener(this::onSpotClick);
         recyclerView.setAdapter(adapter);
 
-        // Configurer le refresh layout
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            repository.refreshData();
-        });
-
-        // Utiliser requireContext() car à ce stade, le fragment est bien attaché
         repository = SurfSpotRepository.getInstance(requireContext());
 
-        // Observer les changements de données
+        // Rafraîchissement manuel
+        swipeRefreshLayout.setOnRefreshListener(() -> repository.refreshData());
+
+        // Observer les données
         repository.getSurfSpotsLiveData().observe(getViewLifecycleOwner(), surfSpots -> {
-            adapter.updateData(surfSpots);
+            adapter.setFullList(surfSpots);    // stocker toutes les données
+            adapter.updateList(surfSpots);     // afficher tout par défaut
         });
 
-        // Observer l'état de chargement
         repository.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
             progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-            if (!isLoading) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
+            swipeRefreshLayout.setRefreshing(isLoading);
         });
 
         return view;
@@ -96,5 +98,31 @@ public class SurfSpotListFragment extends Fragment {
 
     private void onSpotClick(String spotId) {
         callback.onSpotSelected(spotId);
+    }
+
+    // Menu avec SearchView
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setQueryHint("Rechercher un spot...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query); // filtrer à la soumission
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText); // filtrer au fur et à mesure
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

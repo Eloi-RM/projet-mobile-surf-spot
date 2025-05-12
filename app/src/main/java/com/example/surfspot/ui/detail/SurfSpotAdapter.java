@@ -20,12 +20,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.surfspot.R;
 import com.example.surfspot.model.SurfSpot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHolder> {
     private static final String TAG = "SurfSpotAdapter";
     private final Context context;
     private List<SurfSpot> spots;
+    private final List<SurfSpot> fullSpots; // Liste complète pour filtrage
     private OnItemClickListener itemClickListener;
 
     public interface OnItemClickListener {
@@ -34,7 +36,8 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
 
     public SurfSpotAdapter(Context context, List<SurfSpot> spots) {
         this.context = context;
-        this.spots = spots;
+        this.spots = new ArrayList<>(spots);
+        this.fullSpots = new ArrayList<>(spots);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -72,12 +75,9 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
             holder.difficultyTextView.setVisibility(View.GONE);
         }
 
-        // Charger l'image avec Glide
         String imageUrl = spot.getFirstImageUrl();
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Log.d(TAG, "Chargement de l'image dans l'adaptateur: " + imageUrl);
-
-            // Si c'est une URL Airtable, ajouter le paramètre pour une version plus petite de l'image
             if (imageUrl.contains("amazonaws.com") && !imageUrl.contains("?")) {
                 imageUrl = imageUrl + "?w=400";
             }
@@ -95,11 +95,8 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
         } else {
             Log.w(TAG, "Pas d'URL d'image pour le spot: " + spot.getName());
             holder.imageView.setVisibility(View.GONE);
-            // Ou définir une image par défaut
-            // holder.imageView.setImageResource(R.drawable.default_image);
         }
 
-        // Configurer le clic sur l'élément
         holder.cardView.setOnClickListener(v -> {
             if (itemClickListener != null) {
                 itemClickListener.onItemClick(spot.getId());
@@ -112,10 +109,31 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
         return spots != null ? spots.size() : 0;
     }
 
-    public void updateData(List<SurfSpot> newSpots) {
-        this.spots = newSpots;
+    /**
+     * Met à jour la liste affichée (filtrée)
+     */
+    public void updateList(List<SurfSpot> newSpots) {
+        this.spots.clear();
+        this.spots.addAll(newSpots);
         notifyDataSetChanged();
-        Log.d(TAG, "Données mises à jour, nombre d'éléments: " + (newSpots != null ? newSpots.size() : 0));
+        Log.d(TAG, "Données mises à jour, nombre d'éléments: " + newSpots.size());
+    }
+    public void setFullList(List<SurfSpot> newList) {
+        fullSpots.clear();
+        fullSpots.addAll(newList);
+        updateList(newList); // met aussi à jour ce qui est affiché
+    }
+    /**
+     * Filtre la liste des spots selon le texte entré
+     */
+    public void filter(String text) {
+        List<SurfSpot> filteredList = new ArrayList<>();
+        for (SurfSpot spot : fullSpots) {
+            if (spot.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(spot);
+            }
+        }
+        updateList(filteredList);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -123,7 +141,6 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
         final ImageView imageView;
         final TextView nameTextView;
         final TextView locationTextView;
-
         final TextView difficultyTextView;
 
         ViewHolder(View view) {
