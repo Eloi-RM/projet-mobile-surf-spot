@@ -31,7 +31,7 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
     private OnItemClickListener itemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(String spotId);
+        void onItemClick(int spotId);
     }
 
     public SurfSpotAdapter(Context context, List<SurfSpot> spots) {
@@ -60,27 +60,24 @@ public class SurfSpotAdapter extends RecyclerView.Adapter<SurfSpotAdapter.ViewHo
 
         holder.nameTextView.setText(spot.getName());
 
-        if (spot.getLocation() != null && !spot.getLocation().isEmpty()) {
-            holder.locationTextView.setText(spot.getLocation());
+        if (spot.getAddress() != null && !spot.getAddress().isEmpty()) {
+            holder.locationTextView.setText(spot.getAddress());
             holder.locationTextView.setVisibility(View.VISIBLE);
         } else {
             holder.locationTextView.setVisibility(View.GONE);
         }
 
-        if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
-            String diff = displayDifficulty(Integer.parseInt(spot.getDifficulty()));
+        if (spot.getDifficulty() != 0) {
+            String diff = displayDifficulty(spot.getDifficulty());
             holder.difficultyTextView.setText(diff);
             holder.difficultyTextView.setVisibility(View.VISIBLE);
         } else {
             holder.difficultyTextView.setVisibility(View.GONE);
         }
 
-        String imageUrl = spot.getFirstImageUrl();
+        String imageUrl = spot.getPhotoUrl();
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Log.d(TAG, "Chargement de l'image dans l'adaptateur: " + imageUrl);
-            if (imageUrl.contains("amazonaws.com") && !imageUrl.contains("?")) {
-                imageUrl = imageUrl + "?w=400";
-            }
 
             RequestOptions requestOptions = new RequestOptions()
                     .placeholder(R.drawable.placeholder_surf)

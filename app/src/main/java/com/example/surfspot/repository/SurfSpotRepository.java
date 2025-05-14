@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.surfspot.MainActivity;
 import com.example.surfspot.model.SurfSpot;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,23 +27,12 @@ public class SurfSpotRepository {
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private final MutableLiveData<SurfSpot> selectedSpotLiveData = new MutableLiveData<>();
 
-    private interface AirtableAPI {
-        @GET("/v0/appLzFwKNna0K8m27/Surf%20Destinations")
-        Call<AirtableResponse> getAllSpots();
+    private interface API {
+        @GET("/api/spots")
+        Call<List<SurfSpot>> getAllSpots();  // Changé à List<SurfSpot> au lieu de ApiResponse
     }
 
-    public static class AirtableResponse {
-        @SerializedName("records")
-        public List<AirtableRecord> records;
-
-        public static class AirtableRecord {
-            @SerializedName("id")
-            public String id;
-
-            @SerializedName("fields")
-            public SurfSpot fields;
-        }
-    }
+    // Classe ApiResponse supprimée car non nécessaire
 
     // Constructeur privé
     private SurfSpotRepository(Context context) {
@@ -65,22 +53,20 @@ public class SurfSpotRepository {
 
         // Utiliser la méthode getRetrofitInstance de MainActivity
         Retrofit retrofit = MainActivity.getRetrofitInstance();
-        AirtableAPI api = retrofit.create(AirtableAPI.class);
+        API api = retrofit.create(API.class);
 
-        api.getAllSpots().enqueue(new Callback<AirtableResponse>() {
+        api.getAllSpots().enqueue(new Callback<List<SurfSpot>>() {
             @Override
-            public void onResponse(Call<AirtableResponse> call, Response<AirtableResponse> response) {
+            public void onResponse(Call<List<SurfSpot>> call, Response<List<SurfSpot>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     surfSpots.clear();
-                    for (AirtableResponse.AirtableRecord record : response.body().records) {
-                        if (record.fields != null) {
-                            SurfSpot spot = record.fields;
-                            spot.setId(record.id); // S'assurer que l'ID est défini
+                    List<SurfSpot> spotList = response.body();
+                    for (SurfSpot spot : spotList) {
+                        if (spot != null) {
                             surfSpots.add(spot);
-                            Log.d(TAG, "Spot chargé: " + spot.getName() + ", ID: " + spot.getId() +
-                                    ", Image: " + (spot.getFirstImageUrl() != null ? spot.getFirstImageUrl() : "aucune"));
+                            Log.d(TAG, "Spot chargé: " + spot.getName() + ", ID: " + spot.getId());
                         } else {
-                            Log.e(TAG, "Champ fields null pour l'enregistrement: " + record.id);
+                            Log.e(TAG, "Spot null dans la réponse");
                         }
                     }
                     // Mettre à jour LiveData
@@ -94,7 +80,7 @@ public class SurfSpotRepository {
             }
 
             @Override
-            public void onFailure(Call<AirtableResponse> call, Throwable t) {
+            public void onFailure(Call<List<SurfSpot>> call, Throwable t) {
                 Log.e(TAG, "Échec du chargement des spots", t);
                 isLoading.setValue(false);
             }
@@ -113,13 +99,12 @@ public class SurfSpotRepository {
         return selectedSpotLiveData;
     }
 
-    public SurfSpot getSurfSpotById(String id) {
+    public SurfSpot getSurfSpotById(int id) {
         // Chercher le spot dans la liste locale
         for (SurfSpot spot : surfSpots) {
-            if (spot.getId() != null && spot.getId().equals(id)) {
+            if (spot.getId() != 0 && spot.getId() == id) {
                 selectedSpotLiveData.setValue(spot);
-                Log.d(TAG, "Spot trouvé par ID: " + spot.getName() + ", Image URL: " +
-                        (spot.getFirstImageUrl() != null ? spot.getFirstImageUrl() : "aucune"));
+                Log.d(TAG, "Spot trouvé par ID: " + spot.getName());
                 return spot;
             }
         }

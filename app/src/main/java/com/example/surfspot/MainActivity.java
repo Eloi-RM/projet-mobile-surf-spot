@@ -2,6 +2,7 @@ package com.example.surfspot;
 
 import static android.content.ContentValues.TAG;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,9 +29,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SurfSpotListFragment.OnSpotSelectedListener {
+    private final static  String TAG = "MainActivity";
 
-    private static final String API_TOKEN = "pat8izimFSK0Fww6B.5176ea7c229d33209d88c01bca6a7cec2b0c002d503937f5ccb8f21616c3bb89";
-    private static final String BASE_URL = "https://api.airtable.com";
+    private static final String BASE_URL = getApiBaseUrl();
+
+    private static String getApiBaseUrl() {
+        if (isEmulator()) {
+            // Utiliser 10.0.2.2 pour l'émulateur qui pointe vers localhost de la machine hôte
+            return "http://10.0.2.2:8080";
+        } else {
+            // Utiliser l'adresse IP réelle de votre serveur pour les appareils physiques
+            return "http://192.168.12.220:8080"; // Remplacez par l'adresse IP de votre serveur
+        }
+    }
+
+    private static boolean isEmulator() {
+        return Build.PRODUCT.contains("sdk") ||
+                Build.HARDWARE.contains("goldfish") ||
+                Build.HARDWARE.contains("ranchu");
+    }
 
     private SpotDetailViewModel viewModel;
 
@@ -40,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
                 .addInterceptor(chain -> {
                     Request original = chain.request();
                     Request request = original.newBuilder()
-                            .header("Authorization", "Bearer " + API_TOKEN)
                             .method(original.method(), original.body())
                             .build();
                     return chain.proceed(request);
@@ -60,8 +76,12 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "je suis avant le viewmodel provider");
+
         // Initialiser le ViewModel
         viewModel = new ViewModelProvider(this).get(SpotDetailViewModel.class);
+
+        Log.d(TAG, "je suis apres le viewmodel provider");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -107,9 +127,13 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
     }
 
     @Override
-    public void onSpotSelected(String spotId) {
+    public void onSpotSelected(int spotId) {
         // Charger les détails du spot dans le ViewModel
+        Log.d(TAG, "je suis avant le viewmodel loadspot");
+
         viewModel.loadSurfSpot(spotId);
+
+        Log.d(TAG, "je suis apres le viewmodel loadspot");
 
         SpotDetailFragment detailFragment = SpotDetailFragment.newInstance(spotId);
 

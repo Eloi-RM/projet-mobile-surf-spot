@@ -25,7 +25,7 @@ public class SpotDetailFragment extends Fragment {
     private static final String TAG = "SpotDetailFragment";
     private static final String ARG_SPOT_ID = "spot_id";
 
-    private String spotId;
+    private int spotId;
     private SpotDetailViewModel viewModel;
 
     private ImageView spotImageView;
@@ -36,10 +36,10 @@ public class SpotDetailFragment extends Fragment {
 
     private TextView seasonEndTextView;
 
-    public static SpotDetailFragment newInstance(String spotId) {
+    public static SpotDetailFragment newInstance(int spotId) {
         SpotDetailFragment fragment = new SpotDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_SPOT_ID, spotId);
+        args.putInt(ARG_SPOT_ID, spotId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,7 +48,7 @@ public class SpotDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            spotId = getArguments().getString(ARG_SPOT_ID);
+            spotId = getArguments().getInt(ARG_SPOT_ID);
             Log.d(TAG, "Spot ID reçu: " + spotId);
         }
     }
@@ -74,7 +74,7 @@ public class SpotDetailFragment extends Fragment {
         viewModel.getSelectedSpot().observe(getViewLifecycleOwner(), this::updateUI);
 
         // Charger les détails du spot si on a l'ID
-        if (spotId != null && !spotId.isEmpty()) {
+        if (spotId != 0) {
             viewModel.loadSurfSpot(spotId);
         }
 
@@ -88,31 +88,30 @@ public class SpotDetailFragment extends Fragment {
             // Mettre à jour les champs texte
             nameTextView.setText(spot.getName());
 
-            if (spot.getLocation() != null && !spot.getLocation().isEmpty()) {
-                locationTextView.setText(spot.getLocation());
+            if (spot.getAddress() != null && !spot.getAddress().isEmpty()) {
+                locationTextView.setText(spot.getAddress());
                 locationTextView.setVisibility(View.VISIBLE);
             } else {
                 locationTextView.setVisibility(View.GONE);
             }
 
             // Mettre à jour les autres champs si disponibles
-            if (spot.getDifficulty() != null && !spot.getDifficulty().isEmpty()) {
-                String diff = displayDifficulty(Integer.parseInt(spot.getDifficulty()));
-
+            if (spot.getDifficulty() != 0) {
+                String diff = displayDifficulty(spot.getDifficulty());
                 difficultyTextView.setText("Niveau de difficulté : " + diff);
                 difficultyTextView.setVisibility(View.VISIBLE);
             } else {
                 difficultyTextView.setVisibility(View.GONE);
             }
 
-            if (spot.getSeason() != null && !spot.getSeason().isEmpty()) {
-                seasonTextView.setText("Début de la saison : " + spot.getSeason());
+            if (spot.getSeasonStart() != null) {
+                seasonTextView.setText("Début de la saison : " + spot.getSeasonStart());
                 seasonTextView.setVisibility(View.VISIBLE);
             } else {
                 seasonTextView.setVisibility(View.GONE);
             }
 
-            if (spot.getSeasonEnd() != null && !spot.getSeasonEnd().isEmpty()) {
+            if (spot.getSeasonEnd() != null) {
                 seasonEndTextView.setText("Fin de la saison : " + spot.getSeasonEnd());
                 seasonEndTextView.setVisibility(View.VISIBLE);
             } else {
@@ -122,15 +121,9 @@ public class SpotDetailFragment extends Fragment {
 
 
             // Charger l'image
-            String imageUrl = spot.getFirstImageUrl();
+            String imageUrl = spot.getPhotoUrl();
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 Log.d(TAG, "Chargement de l'image: " + imageUrl);
-
-                // Vérifier si l'URL est au format Airtable
-                if (imageUrl.contains("amazonaws.com") && !imageUrl.contains("?")) {
-                    // Ajouter le paramètre pour une version large de l'image
-                    imageUrl = imageUrl + "?w=800";
-                }
 
                 RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.drawable.placeholder_surf) // Créez un placeholder dans res/drawable

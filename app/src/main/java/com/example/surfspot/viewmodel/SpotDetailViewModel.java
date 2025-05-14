@@ -29,19 +29,14 @@ public class SpotDetailViewModel extends AndroidViewModel {
         });
     }
 
-    public void loadSurfSpot(String spotId) {
-        if (spotId == null || spotId.isEmpty()) {
-            Log.e(TAG, "Erreur: spotId est null ou vide");
-            return;
-        }
+    public void loadSurfSpot(int spotId) {
 
         Log.d(TAG, "Chargement du spot: " + spotId);
         SurfSpot spot = repository.getSurfSpotById(spotId);
 
         if (spot != null) {
             selectedSpot.setValue(spot);
-            Log.d(TAG, "Spot chargé: " + spot.getName() + ", Image: " +
-                    (spot.getFirstImageUrl() != null ? spot.getFirstImageUrl() : "aucune"));
+            Log.d(TAG, "Spot chargé: " + spot.getName());
         } else {
             Log.e(TAG, "Impossible de trouver le spot avec l'ID: " + spotId);
         }

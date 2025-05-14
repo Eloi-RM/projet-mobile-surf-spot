@@ -39,7 +39,7 @@ public class SurfSpotListFragment extends Fragment {
     }
 
     public interface OnSpotSelectedListener {
-        void onSpotSelected(String spotId);
+        void onSpotSelected(int spotId);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class SurfSpotListFragment extends Fragment {
         return view;
     }
 
-    private void onSpotClick(String spotId) {
+    private void onSpotClick(int spotId) {
         callback.onSpotSelected(spotId);
     }
 
