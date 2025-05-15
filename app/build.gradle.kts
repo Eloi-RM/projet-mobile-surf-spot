@@ -29,7 +29,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
+
+
 
 dependencies {
     implementation(libs.appcompat)
@@ -102,4 +105,11 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("org.osmdroid:osmdroid-wms:6.1.20")
+    implementation("org.osmdroid:osmdroid-mapsforge:6.1.20")
+    implementation("org.osmdroid:osmdroid-geopackage:6.1.20") {
+        exclude(group = "com.j256.ormlite", module = "ormlite-core")
+    }
 }
