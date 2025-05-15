@@ -25,6 +25,11 @@ import com.example.surfspot.viewmodel.SpotDetailViewModel;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
@@ -124,6 +129,8 @@ public class SpotDetailFragment extends Fragment {
             }
 
             if (spot.getSeasonStart() != null) {
+                // C'est un java.util.Date
+                // Afficher dans le TextView
                 seasonTextView.setText("Début de la saison : " + spot.getSeasonStart());
                 seasonTextView.setVisibility(View.VISIBLE);
             } else {

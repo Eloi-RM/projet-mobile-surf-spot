@@ -1,9 +1,13 @@
 package com.example.surfspot.model;
 
+import android.text.format.DateFormat;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 import java.util.List;
+
+import mil.nga.crs.common.DateTime;
 
 public class SurfSpot {
     @SerializedName("id")
@@ -19,10 +23,10 @@ public class SurfSpot {
     private int difficulty;
 
     @SerializedName("seasonStart")
-    private Date seasonStart;
+    private String seasonStart;
 
     @SerializedName("seasonEnd")
-    private Date seasonEnd;
+    private String seasonEnd;
 
     @SerializedName("photoUrl")
     private String photoUrl;
@@ -49,11 +53,11 @@ public class SurfSpot {
         return difficulty;
     }
 
-    public Date getSeasonStart() {
+    public String getSeasonStart() {
         return seasonStart;
     }
 
-    public Date getSeasonEnd() {
+    public String getSeasonEnd() {
         return seasonEnd;
     }
 
