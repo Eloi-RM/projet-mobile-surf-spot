@@ -45,6 +45,7 @@ public class SpotDetailFragment extends Fragment {
     private SpotDetailViewModel viewModel;
     private ImageView spotImageView;
     private TextView nameTextView;
+    private TextView surfBreakView;
     private TextView locationTextView;
     private TextView difficultyTextView;
     private TextView seasonTextView;
@@ -77,6 +78,7 @@ public class SpotDetailFragment extends Fragment {
         // Initialiser les vues
         spotImageView = view.findViewById(R.id.detail_image);
         nameTextView = view.findViewById(R.id.detail_name);
+        surfBreakView = view.findViewById(R.id.detail_surfBreak);
         locationTextView = view.findViewById(R.id.detail_location);
         difficultyTextView = view.findViewById(R.id.detail_difficulty);
         seasonTextView = view.findViewById(R.id.detail_season);
@@ -111,6 +113,13 @@ public class SpotDetailFragment extends Fragment {
 
             // Mettre à jour les champs texte
             nameTextView.setText(spot.getName());
+
+            if (spot.getSurfBreak() != null) {
+                surfBreakView.setText("Type de spot : " + spot.getSurfBreak());
+                surfBreakView.setVisibility(View.VISIBLE);
+            } else {
+                surfBreakView.setVisibility(View.GONE);
+            }
 
             if (spot.getAddress() != null && !spot.getAddress().isEmpty()) {
                 locationTextView.setText(spot.getAddress());
@@ -167,7 +176,7 @@ public class SpotDetailFragment extends Fragment {
             }
 
             double lat = spot.getLatitude();
-            double lng = spot.getLatitude();
+            double lng = spot.getLongitude();
 
             if (lat != 0 && lng != 0) {
                 GeoPoint location = new GeoPoint(lat, lng);

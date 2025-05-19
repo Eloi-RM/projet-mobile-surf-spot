@@ -1,13 +1,7 @@
 package com.example.surfspot.model;
 
-import android.text.format.DateFormat;
-
+import com.example.surfspot.Enum.SurfBreak;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-import java.util.List;
-
-import mil.nga.crs.common.DateTime;
 
 public class SurfSpot {
     @SerializedName("id")
@@ -15,6 +9,9 @@ public class SurfSpot {
 
     @SerializedName("name")
     private String name;
+
+    @SerializedName("surfBreak")
+    private SurfBreak surfBreak;
 
     @SerializedName("address") //prankex
     private String address;
@@ -48,6 +45,10 @@ public class SurfSpot {
 
     public String getName() {
         return name != null ? name : "Sans nom";
+    }
+
+    public String getSurfBreak() {
+        return surfBreak.getValue();
     }
 
     public String getAddress() {
