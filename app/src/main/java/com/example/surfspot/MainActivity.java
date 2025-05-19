@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
             return "http://10.0.2.2:8080";
         } else {
             // Utiliser l'adresse IP réelle de votre serveur pour les appareils physiques
-            return "http://192.168.12.209:8080"; // Remplacez par l'adresse IP de votre serveur
+            return "http://192.168.12.220:8080"; // Remplacez par l'adresse IP de votre serveur
         }
     }
 
