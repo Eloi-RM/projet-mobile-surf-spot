@@ -16,7 +16,7 @@ public class SurfSpot {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("adress") //prankex
+    @SerializedName("address") //prankex
     private String address;
 
     @SerializedName("difficultyLevel")
@@ -30,6 +30,12 @@ public class SurfSpot {
 
     @SerializedName("photoUrl")
     private String photoUrl;
+
+    @SerializedName("longitude")
+    private double longitude;
+
+    @SerializedName("latitude")
+    private double latitude;
 
     // Getters et Setters
     public int getId() {
@@ -48,7 +54,6 @@ public class SurfSpot {
         return address;
     }
 
-
     public int getDifficulty() {
         return difficulty;
     }
@@ -63,5 +68,13 @@ public class SurfSpot {
 
     public String getPhotoUrl() {
         return photoUrl;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 }

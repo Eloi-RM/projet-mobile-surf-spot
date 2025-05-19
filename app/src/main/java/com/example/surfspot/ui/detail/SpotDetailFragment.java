@@ -165,8 +165,9 @@ public class SpotDetailFragment extends Fragment {
                 // Ou afficher une image par défaut
                 // spotImageView.setImageResource(R.drawable.no_image);
             }
-            double lat = 47.218272;
-            double lng = -1.534505;
+
+            double lat = spot.getLatitude();
+            double lng = spot.getLatitude();
 
             if (lat != 0 && lng != 0) {
                 GeoPoint location = new GeoPoint(lat, lng);
