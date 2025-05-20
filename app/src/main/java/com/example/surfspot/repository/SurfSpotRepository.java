@@ -1,14 +1,26 @@
 package com.example.surfspot.repository;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.surfspot.Enum.SurfBreak;
 import com.example.surfspot.MainActivity;
+import com.example.surfspot.R;
 import com.example.surfspot.model.SurfSpot;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +63,29 @@ public class SurfSpotRepository {
     private void loadData() {
         isLoading.setValue(true);
 
+        // Vérifier l'état de la connexion Internet
+        if (isNetworkAvailable()) {
+            // Si connecté, utiliser l'API
+            Log.d(TAG, "AAAAAAAAAAAAAAAAA loading api");
+            loadFromApi();
+        } else {
+            // Si non connecté, utiliser les données locales
+            Log.d(TAG, "AAAAAAAAAAAAAAAAA loading local");
+            loadFromLocal();
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
+    }
+
+    private void loadFromApi() {
+
         // Utiliser la méthode getRetrofitInstance de MainActivity
         Retrofit retrofit = MainActivity.getRetrofitInstance();
         API api = retrofit.create(API.class);
@@ -85,6 +120,56 @@ public class SurfSpotRepository {
                 isLoading.setValue(false);
             }
         });
+    }
+
+    private void loadFromLocal() {
+        try {
+            // Lecture du fichier JSON dans /res/raw/surfspots.json
+            InputStream inputStream = context.getResources().openRawResource(R.raw.surfspots);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder builder = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+
+            reader.close();
+            inputStream.close();
+
+            String jsonData = builder.toString();
+
+            // Parsing JSON
+            JSONArray root = new JSONArray(jsonData);
+
+            for (int i = 0; i < root.length(); i++) {
+                JSONObject aSpot = root.getJSONObject(i);
+
+                // Récupération du nom
+                int id = aSpot.optInt("id");
+                String name = aSpot.optString("name");
+                String address = aSpot.optString("address");
+                int difficulty = aSpot.optInt("difficultyLevel");
+                SurfBreak surfBreak = SurfBreak.valueOf(aSpot.optString("surfBreak"));
+                String photoUrl = aSpot.optString("photoUrl");
+                String seasonStart = aSpot.optString("seasonStart");
+                String seasonEnd = aSpot.optString("seasonEnd");
+                double longitude = aSpot.optDouble("longitude");
+                double latitude = aSpot.optDouble("latitude");
+
+                // Création de l'objet SurfSpot
+                SurfSpot spot = new SurfSpot(id, name, address, difficulty, surfBreak, photoUrl, seasonStart, seasonEnd, longitude, latitude);
+                surfSpots.add(spot);
+
+                // Mettre à jour LiveData
+                surfSpotsLiveData.setValue(new ArrayList<>(surfSpots));
+            }
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace(); // Tu peux aussi logguer avec Log.e() pour Android
+        }
+        isLoading.setValue(false);
+
     }
 
     public LiveData<List<SurfSpot>> getSurfSpotsLiveData() {

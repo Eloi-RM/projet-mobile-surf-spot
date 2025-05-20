@@ -34,6 +34,19 @@ public class SurfSpot {
     @SerializedName("latitude")
     private double latitude;
 
+    public SurfSpot(int id, String name, String address, int difficulty, SurfBreak surfBreak, String photoUrl, String seasonStart, String seasonEnd, double longitude, double latitude) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.difficulty = difficulty;
+        this.surfBreak = surfBreak;
+        this.photoUrl = photoUrl;
+        this.seasonStart = seasonStart;
+        this.seasonEnd = seasonEnd;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     // Getters et Setters
     public int getId() {
         return id;

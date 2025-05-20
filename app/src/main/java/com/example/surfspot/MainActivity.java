@@ -129,11 +129,9 @@ public class MainActivity extends AppCompatActivity implements SurfSpotListFragm
     @Override
     public void onSpotSelected(int spotId) {
         // Charger les détails du spot dans le ViewModel
-        Log.d(TAG, "je suis avant le viewmodel loadspot");
 
         viewModel.loadSurfSpot(spotId);
 
-        Log.d(TAG, "je suis apres le viewmodel loadspot");
 
         SpotDetailFragment detailFragment = SpotDetailFragment.newInstance(spotId);
 

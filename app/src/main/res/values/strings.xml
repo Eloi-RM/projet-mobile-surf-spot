@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SurfSpotApp</string>
+    <string name="app_name">WaveFinder</string>
     <string name="spot_detail_title">Détails du spot</string>
     <string name="break_type_label">Type de vague:</string>
     <string name="address_label">Adresse:</string>

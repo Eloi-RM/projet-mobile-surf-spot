@@ -115,7 +115,7 @@ public class SpotDetailFragment extends Fragment {
             nameTextView.setText(spot.getName());
 
             if (spot.getSurfBreak() != null) {
-                surfBreakView.setText("Type de spot : " + spot.getSurfBreak());
+                surfBreakView.setText(spot.getSurfBreak());
                 surfBreakView.setVisibility(View.VISIBLE);
             } else {
                 surfBreakView.setVisibility(View.GONE);
@@ -207,7 +207,7 @@ public class SpotDetailFragment extends Fragment {
                 myString += "\uD83C\uDF0A";
             }
             else {
-                myString += "\u25EF";
+//                myString += "\u25EF";
             }
             myString += " ";
         }

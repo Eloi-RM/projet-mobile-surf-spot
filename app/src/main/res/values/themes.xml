@@ -11,10 +11,26 @@
     <!-- Thème utilisé dans le manifest -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <!-- Style pour le texte des Toolbars -->
+        <item name="toolbarStyle">@style/CustomToolbarStyle</item>
+        <!-- Couleur des icônes de navigation (flèche retour) -->
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_back_white</item>
+    </style>
+
+    <!-- Style pour la Toolbar personnalisée -->
+    <style name="CustomToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>
+        <item name="navigationIconTint">#FFFFFF</item>
+    </style>
+
+    <!-- Style pour le texte du titre dans la Toolbar -->
+    <style name="CustomTitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 </resources>
