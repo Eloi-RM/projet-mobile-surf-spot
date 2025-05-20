@@ -1,145 +1,482 @@
-{
-  "records": [
-    {
-      "id": "rec5aF9TjMjBicXCK",
-      "fields": {
-        "Surf Break": [
-          "Reef Break"
-        ],
-        "Difficulty Level": 4,
-        "Destination": "Pipeline",
-        "Geocode": "🔵 eyJpIjoiUGlwZWxpbmUsIE9haHUsIEhhd2FpaSIsIm8iOnsic3RhdHVzIjoiT0siLCJmb3JtYXR0ZWRBZGRyZXNzIjoiRWh1a2FpIEJlYWNoIFBhcmssIEhhbGVpd2EsIEhJIDk2NzEyLCBVbml...",
-        "Influencers": [
-          "recD1zp1pQYc8O7l2",
-          "rec1ptbRPxhS8rRun"
-        ],
-        "Magic Seaweed Link": "<https://magicseaweed.com/Pipeline-Backdoor-Surf-Report/616/>;",
-        "Photos": [
-          {
-            "id": "attf6yu03NAtCuv5L",
-            "url": "<https://dl.airtable.com/ZuXJZ2NnTF40kCdBfTld_thomas-ashlock-64485-unsplash.jpg>;",
-            "filename": "thomas-ashlock-64485-unsplash.jpg",
-            "size": 688397,
-            "type": "image/jpeg",
-            "thumbnails": {
-              "small": {
-                "url": "<https://dl.airtable.com/yfKxR9ZQqiT7drKxpjdF_small_thomas-ashlock-64485-unsplash.jpg>;",
-                "width": 52,
-                "height": 36
-              },
-              "large": {
-                "url": "<https://dl.airtable.com/cFfMuU8NQjaEskeC3B2h_large_thomas-ashlock-64485-unsplash.jpg>;",
-                "width": 744,
-                "height": 512
-              },
-              "full": {
-                "url": "<https://dl.airtable.com/psynuQNmSvOTe3BWa0Fw_full_thomas-ashlock-64485-unsplash.jpg>;",
-                "width": 2233,
-                "height": 1536
-              }
-            }
-          }
-        ],
-        "Peak Surf Season Begins": "2018-07-22",
-        "Destination State/Country": "Oahu, Hawaii",
-        "Peak Surf Season Ends": "2018-08-31",
-        "Address": "Pipeline, Oahu, Hawaii"
-      },
-      "createdTime": "2018-05-31T00:16:16.000Z"
-    },
-    {
-      "id": "recT98Z2El7YYwmc4",
-      "fields": {
-        "Surf Break": [
-          "Point Break"
-        ],
-        "Difficulty Level": 5,
-        "Destination": "Skeleton Bay",
-        "Geocode": "🔵 eyJpIjoiU2tlbGV0b24gQmF5LCBOYW1pYmlhIiwibyI6eyJzdGF0dXMiOiJPSyIsImZvcm1hdHRlZEFkZHJlc3MiOiJOYW1pYmlhIiwibGF0IjotMjUuOTE0NDkxOSwibG5nIjoxNC45MDY4NTk...",
-        "Influencers": [
-          "recD1zp1pQYc8O7l2",
-          "rec1ptbRPxhS8rRun"
-        ],
-        "Magic Seaweed Link": "<https://magicseaweed.com/Skeleton-Bay-Surf-Report/4591/>;",
-        "Photos": [
-          {
-            "id": "attKinKKZvgdS5A5U",
-            "url": "<https://dl.airtable.com/YzqA020RRLaTyAZAta9g_brandon-compagne-308937-unsplash.jpg>;",
-            "filename": "brandon-compagne-308937-unsplash.jpg",
-            "size": 1494974,
-            "type": "image/jpeg",
-            "thumbnails": {
-              "small": {
-                "url": "<https://dl.airtable.com/Y8970kyrQHWfL6AMkxZQ_small_brandon-compagne-308937-unsplash.jpg>;",
-                "width": 54,
-                "height": 36
-              },
-              "large": {
-                "url": "<https://dl.airtable.com/dkQKXoUnTGiofIvg5TJR_large_brandon-compagne-308937-unsplash.jpg>;",
-                "width": 768,
-                "height": 512
-              },
-              "full": {
-                "url": "<https://dl.airtable.com/pexuxaQ6D2VV61pyhUwn_full_brandon-compagne-308937-unsplash.jpg>;",
-                "width": 3000,
-                "height": 2000
-              }
-            }
-          }
-        ],
-        "Peak Surf Season Begins": "2018-09-01",
-        "Destination State/Country": "Namibia ",
-        "Peak Surf Season Ends": "2018-11-30",
-        "Address": "Skeleton Bay, Namibia "
-      },
-      "createdTime": "2018-05-31T00:16:16.000Z"
-    },
-    {
-      "id": "rech5ennHFNOtB1Wt",
-      "fields": {
-        "Surf Break": [
-          "Point Break"
-        ],
-        "Difficulty Level": 4,
-        "Destination": "Superbank",
-        "Geocode": "🔵 eyJpIjoiU3VwZXJiYW5rLCBHb2xkIENvYXN0LCBBdXN0cmFsaWEiLCJvIjp7InN0YXR1cyI6Ik9LIiwiZm9ybWF0dGVkQWRkcmVzcyI6IlNuYXBwZXIgUm9ja3MgUmQsIENvb2xhbmdhdHRhIFF...",
-        "Influencers": [
-          "recSkJ4HuvzAUBrdd"
-        ],
-        "Magic Seaweed Link": "<https://magicseaweed.com/Surfers-Paradise-Gold-Coast-Surf-Report/1012/>;",
-        "Photos": [
-          {
-            "id": "attmtbEOAQteRjz2p",
-            "url": "<https://dl.airtable.com/I4E4xZeQbO2g814udQDm_jeremy-bishop-80371-unsplash.jpg>;",
-            "filename": "jeremy-bishop-80371-unsplash.jpg",
-            "size": 1524876,
-            "type": "image/jpeg",
-            "thumbnails": {
-              "small": {
-                "url": "<https://dl.airtable.com/IWP9RPvvSM2pX1sHeigV_small_jeremy-bishop-80371-unsplash.jpg>;",
-                "width": 48,
-                "height": 36
-              },
-              "large": {
-                "url": "<https://dl.airtable.com/aBnINo8qQqDvER2f2wGg_large_jeremy-bishop-80371-unsplash.jpg>;",
-                "width": 683,
-                "height": 512
-              },
-              "full": {
-                "url": "<https://dl.airtable.com/eZxgLD8hRI2Y27J39LNl_full_jeremy-bishop-80371-unsplash.jpg>;",
-                "width": 3000,
-                "height": 2250
-              }
-            }
-          }
-        ],
-        "Peak Surf Season Begins": "2018-11-28",
-        "Destination State/Country": "Gold Coast, Australia",
-        "Peak Surf Season Ends": "2019-02-01",
-        "Address": "Superbank, Gold Coast, Australia"
-      },
-      "createdTime": "2018-05-31T00:16:16.000Z"
-    }
-  ],
-  "offset": "rech5ennHFNOtB1Wt"
-}
+[
+  {
+    "name": "Hossegor La Gravière",
+    "address": "Boulevard de la Dune, 40150 Hossegor, France",
+    "difficultyLevel": 4,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.plages-landes.info/app/uploads/2023/03/graviere-31-mars13-0531-1024x683.webp",
+    "seasonStart": "2025-09-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -1.4486,
+    "latitude": 43.6611,
+    "id": 44
+  },
+  {
+    "name": "Pipeline",
+    "address": "Ehukai Beach Park, Pupukea, Hawaii 96712, USA",
+    "difficultyLevel": 5,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://www.prism-surfboards.com/wp-content/uploads/2024/02/istockphoto-144233268-612x612-1.jpg",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": -158.0522,
+    "latitude": 21.6656,
+    "id": 45
+  },
+  {
+    "name": "Lacanau Océan",
+    "address": "Boulevard de la Plage, 33680 Lacanau, France",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://cdn.generationvoyage.fr/2019/11/spot-surf-lacanau.jpg",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -1.2016,
+    "latitude": 45.0017,
+    "id": 46
+  },
+  {
+    "name": "Uluwatu",
+    "address": "Uluwatu, Pecatu, Bali, Indonésie",
+    "difficultyLevel": 4,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://surfbali.fr/wp-content/uploads/2022/11/temples-uluwatu-spot-surf-bali.jpg",
+    "seasonStart": "2025-04-01",
+    "seasonEnd": "2025-09-30",
+    "longitude": 115.0849,
+    "latitude": -8.8291,
+    "id": 47
+  },
+  {
+    "name": "Teahupo o",
+    "address": "Teahupo o, Tahiti, Polynésie française",
+    "difficultyLevel": 5,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://www.mksport-mag.com/media/cache/article_picture_block_webp/2024/06/3461-mountains-tahiti-c-damien-poullenot.webp",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -149.267,
+    "latitude": -17.8456,
+    "id": 48
+  },
+  {
+    "name": "Bells Beach",
+    "address": "Bells Beach, Victoria, Australie",
+    "difficultyLevel": 3,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://fr.visitmelbourne.com/-/media/images/great-ocean-road/things-to-do/nature-and-wildlife/beaches-and-coastlines/bells-beach/bells-beach-surfer_gor_r_1244729_1600x900.jpg?ts=20151113140138&c=product&cw=1600&ch=1200",
+    "seasonStart": "2025-12-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": 144.2847,
+    "latitude": -38.366944,
+    "id": 49
+  },
+  {
+    "name": "Cape Hatteras",
+    "address": "Outer Banks, Caroline du Nord, USA",
+    "difficultyLevel": 3,
+    "surfBreak": "OUTER_BANKS",
+    "photoUrl": "https://www.roadtrippin.fr/image/album/800/outer-banks-040.jpg",
+    "seasonStart": "2025-08-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -75.5388,
+    "latitude": 35.2269,
+    "id": 50
+  },
+  {
+    "name": "Côte des Basques",
+    "address": "Plage de la Côte des Basques, 64200 Biarritz, France",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.tourisme64.com/wp-content/uploads/tis/large/Plage-de-la-Cote-des-Basques--Biarritz---Vue--2-.jpg",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -1.5679,
+    "latitude": 43.4793,
+    "id": 51
+  },
+  {
+    "name": "Le Minou",
+    "address": "Plage du Minou, 29217 Plouzané, France",
+    "difficultyLevel": 3,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://api.cloudly.space/resize/clip/1900/1080/75/aHR0cHM6Ly9icmV0YWduZS5tZWRpYS50b3VyaW5zb2Z0LmV1L3VwbG9hZC9idG8tYWE4NjAwLVJBR09ULUV1Z2VuaWUtMi5qcGc=/image.jpg",
+    "seasonStart": "2025-09-01",
+    "seasonEnd": "2025-12-31",
+    "longitude": -4.6177,
+    "latitude": 48.3372,
+    "id": 52
+  },
+  {
+    "name": "Playa de Somo",
+    "address": "Playa de Somo, 39140 Somo, Cantabrie, Espagne",
+    "difficultyLevel": 1,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.hicantabria.com/wp-content/uploads/2024/07/20240728_123417-1-1536x864.jpg",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -3.7328,
+    "latitude": 43.463,
+    "id": 53
+  },
+  {
+    "name": "Nazaré",
+    "address": "Praia do Norte, Nazaré, Portugal",
+    "difficultyLevel": 5,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://cdn.visitportugal.com/sites/default/files/styles/encontre_detalhe_poi_destaque/public/mediateca/N4.PRA1326D.jpg?itok=2xn6o-T9",
+    "seasonStart": "2025-10-01",
+    "seasonEnd": "2026-03-31",
+    "longitude": -9.0859,
+    "latitude": 39.6079,
+    "id": 54
+  },
+  {
+    "name": "J-Bay",
+    "address": "Jeffreys Bay, Eastern Cape, Afrique du Sud",
+    "difficultyLevel": 4,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://nomadsurfers.com/wp-content/uploads/2016/01/13932778_923310941148649_9105073012816324167_n-1.jpg",
+    "seasonStart": "2025-12-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": 24.9128,
+    "latitude": -34.0507,
+    "id": 55
+  },
+  {
+    "name": "Guidel",
+    "address": "Plage de Guidel, 56520 Guidel, France",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.lorientbretagnesudtourisme.fr/uploads/elementor/thumbs/spot-de-surf-morbihan-plage-du-loch-guidel-lorient-bretagne-sud-©thibault-poriel-lbst-qak8b7cm7pr7b9twbjhqoxkjosj0ltfuc74afsneiq.jpg",
+    "seasonStart": "2025-04-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -3.5333,
+    "latitude": 47.7833,
+    "id": 56
+  },
+  {
+    "name": "Trestles",
+    "address": "Plage de Trestles, San Clemente, California 92672, USA",
+    "difficultyLevel": 3,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://mediaim.expedia.com/destination/2/28432d791ee373668ffd0f48812a85a9.jpg",
+    "seasonStart": "2025-04-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -117.5939,
+    "latitude": 33.3853,
+    "id": 57
+  },
+  {
+    "name": "Malibu Point",
+    "address": "Plage de Malibu, Malibu, California 90265, USA",
+    "difficultyLevel": 2,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/92/38/2f/20151115-131947-largejpg.jpg?w=1200&h=1200&s=1",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -118.7798,
+    "latitude": 34.0259,
+    "id": 58
+  },
+  {
+    "name": "Supertubes",
+    "address": "Plage de Supertubes, Jeffreys Bay, 6330, Afrique du Sud",
+    "difficultyLevel": 5,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/217376340.jpg?k=80f2a78f4163e127aac6a008919362ba4e9792b1a28db75820410dc8323b8f72&o=",
+    "seasonStart": "2025-12-01",
+    "seasonEnd": "2026-01-31",
+    "longitude": 24.9311,
+    "latitude": -34.0522,
+    "id": 59
+  },
+  {
+    "name": "Supertubos",
+    "address": "Plage de Peniche, Estrada do Baleal, Peniche, Portugal",
+    "difficultyLevel": 3,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://center-portugal.transforms.svdcdn.com/production/images/natur-experience-6.jpg?w=1920&q=100&auto=format&fit=max&dm=1709031401&s=6b41004338760a9d8a0ddefb224b4470",
+    "seasonStart": "2025-09-01",
+    "seasonEnd": "2025-12-31",
+    "longitude": -9.3724,
+    "latitude": 39.3404,
+    "id": 60
+  },
+  {
+    "name": "Byron Bay",
+    "address": "The Pass, Cape Byron, New South Wales 2481, Australie",
+    "difficultyLevel": 2,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://dynamic-media.tacdn.com/media/photo-o/2f/28/f2/f0/caption.jpg?w=1400&h=1000&s=1",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": 153.6311,
+    "latitude": -28.6282,
+    "id": 61
+  },
+  {
+    "name": "Santa Catalina",
+    "address": "Santa Catalina, Veraguas, Panama",
+    "difficultyLevel": 4,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://panamadivecenter.com/wp-content/uploads/2020/04/DNorwood-12-07-2015-0115-scaled.jpg",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -81.2628,
+    "latitude": 7.6339,
+    "id": 62
+  },
+  {
+    "name": "Arpoador",
+    "address": "Praia de Arpoador, Rio de Janeiro, Brésil",
+    "difficultyLevel": 3,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/65/5c/a5/photo3jpg.jpg?w=1400&h=800&s=1",
+    "seasonStart": "2025-06-01",
+    "seasonEnd": "2025-12-31",
+    "longitude": -43.1925,
+    "latitude": 8.0888,
+    "id": 63
+  },
+  {
+    "name": "Tamarindo",
+    "address": "Playa Tamarindo, Guanacaste, Costa Rica",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/6a/e8/40/photo1jpg.jpg?w=2000&h=-1&s=1",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -85.8361,
+    "latitude": 10.3016,
+    "id": 64
+  },
+  {
+    "name": "Mundaka",
+    "address": "Plage de Mundaka, Mundaka, Pays Basque, Espagne",
+    "difficultyLevel": 4,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://turismo.euskadi.eus/en/beaches/beach-of-mundaka/aa30-12375/en/",
+    "seasonStart": "2025-09-01",
+    "seasonEnd": "2025-12-31",
+    "longitude": -2.6981,
+    "latitude": 43.4073,
+    "id": 65
+  },
+  {
+    "name": "Woolacombe",
+    "address": "Plage de Woolacombe, Devon, EX34 7DL, Royaume-Uni",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.visitdevon.co.uk/things-to-do/woolacombe-beach-p1559373",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -4.2081,
+    "latitude": 51.1747,
+    "id": 66
+  },
+  {
+    "name": "Mount Maunganui",
+    "address": "Bay of Plenty, Mount Maunganui, Nouvelle-Zélande",
+    "difficultyLevel": 3,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.bayofplentynz.com/discover/mount-main-beach/",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": 176.1834,
+    "latitude": -37.6361,
+    "id": 67
+  },
+  {
+    "name": "Popoyo",
+    "address": "Plage de Popoyo, Tola, Rivas, Nicaragua",
+    "difficultyLevel": 4,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://visitnicaragua.us/beaches-in-the-south-pacific/",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -86.0875,
+    "latitude": 11.456,
+    "id": 68
+  },
+  {
+    "name": "Kirra",
+    "address": "Kirra Beach, Gold Coast, Queensland, Australie",
+    "difficultyLevel": 3,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://www.destinationgoldcoast.com/places-to-see/coolangatta/attractions/kirra-beach",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": 153.5332,
+    "latitude": -28.1665,
+    "id": 69
+  },
+  {
+    "name": "La Torche",
+    "address": "Plage de La Torche, 29120 Plomeur, France",
+    "difficultyLevel": 3,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.bretagne-tipp.fr/surfen-in-frankreich/surfen-la-torche/",
+    "seasonStart": "2025-04-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -4.3511,
+    "latitude": 47.8375,
+    "id": 70
+  },
+  {
+    "name": "Playa Grande",
+    "address": "Playa Grande, Tamarindo, Guanacaste, Costa Rica",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.visitcostarica.com/en/costa-rica/things-to-do/beaches/playa-grande",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -85.8466,
+    "latitude": 10.3442,
+    "id": 71
+  },
+  {
+    "name": "Cloud Nine",
+    "address": "Cloud Nine, General Luna, Siargao Island, Philippines",
+    "difficultyLevel": 5,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://philippines.travel/destinations/siargao",
+    "seasonStart": "2025-06-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": 126.1773,
+    "latitude": 9.7949,
+    "id": 72
+  },
+  {
+    "name": "Waimea Bay",
+    "address": "Plage de Waimea Bay, Oahu, Hawaii 96712, USA",
+    "difficultyLevel": 5,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://www.gohawaii.com/islands/oahu/regions/north-shore/waimea-bay",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": -158.0667,
+    "latitude": 21.6428,
+    "id": 73
+  },
+  {
+    "name": "Santa Barbara",
+    "address": "Plage de Ponta Delgada, São Miguel, Açores, Portugal",
+    "difficultyLevel": 3,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.visitportugal.com/en/content/santa-barbara-beach-sao-miguel",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -25.5297,
+    "latitude": 37.8207,
+    "id": 74
+  },
+  {
+    "name": "Ribeira d Ilhas",
+    "address": "Ribeira d Ilhas, Ericeira, Portugal",
+    "difficultyLevel": 4,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://www.visitportugal.com/en/content/ericeira-world-surfing-reserve",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -9.4203,
+    "latitude": 38.9876,
+    "id": 75
+  },
+  {
+    "name": "Mentawai Islands",
+    "address": "Plage de Mentawai, Sumatra Occidental, Indonésie",
+    "difficultyLevel": 5,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://indonesia.travel/gb/en/destinations/sumatra/mentawai-islands",
+    "seasonStart": "2025-04-01",
+    "seasonEnd": "2025-09-30",
+    "longitude": 99.6125,
+    "latitude": -1.9926,
+    "id": 76
+  },
+  {
+    "name": "Cerritos Beach",
+    "address": "Playa Los Cerritos, Baja California Sur, Mexique",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.visitmexico.com/en/baja-california-sur/todos-santos",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-11-30",
+    "longitude": -110.1767,
+    "latitude": 23.3302,
+    "id": 77
+  },
+  {
+    "name": "Rincon",
+    "address": "Plage de Sandy Beach, Rincon, Puerto Rico",
+    "difficultyLevel": 3,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://www.discoverpuertorico.com/regions/west/rincon",
+    "seasonStart": "2025-10-01",
+    "seasonEnd": "2026-03-31",
+    "longitude": -67.2533,
+    "latitude": 18.3422,
+    "id": 78
+  },
+  {
+    "name": "Anchor Point",
+    "address": "Plage d Anchor Point, Taghazout, Maroc",
+    "difficultyLevel": 4,
+    "surfBreak": "POINT_BREAK",
+    "photoUrl": "https://visitmorocco.com/index.php/fr/ou-aller/littoral-mediterraneen/agadir",
+    "seasonStart": "2025-10-01",
+    "seasonEnd": "2026-02-28",
+    "longitude": -9.7183,
+    "latitude": 30.5404,
+    "id": 79
+  },
+  {
+    "name": "Moliets",
+    "address": "Plage de Moliets, 40660 Moliets-et-Maa, France",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.moliets.com/plage-de-moliets.html",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-10-31",
+    "longitude": -1.3567,
+    "latitude": 43.8558,
+    "id": 80
+  },
+  {
+    "name": "La Lanzada",
+    "address": "Plage de La Lanzada, O Grove, Galice, Espagne",
+    "difficultyLevel": 2,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.turismo.gal/recurso/-/detalle/3496/praia-a-lanzada?langId=en_US",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-09-30",
+    "longitude": -8.8755,
+    "latitude": 42.4338,
+    "id": 81
+  },
+  {
+    "name": "Punta Rocas",
+    "address": "Plage de Punta Rocas, Lima, Pérou",
+    "difficultyLevel": 4,
+    "surfBreak": "REEF_BREAK",
+    "photoUrl": "https://www.peru.travel/en/what-to-do/surfing",
+    "seasonStart": "2025-11-01",
+    "seasonEnd": "2026-03-31",
+    "longitude": -76.799,
+    "latitude": -12.2664,
+    "id": 82
+  },
+  {
+    "name": "Montalivet",
+    "address": "Plage du Médoc, 33930 Vendays-Montalivet, France",
+    "difficultyLevel": 1,
+    "surfBreak": "BEACH_BREAK",
+    "photoUrl": "https://www.medoc-atlantique.com/destinations/vendays-montalivet/plages-montalivet/",
+    "seasonStart": "2025-05-01",
+    "seasonEnd": "2025-09-30",
+    "longitude": -1.1607,
+    "latitude": 45.3569,
+    "id": 83
+  }
+]
