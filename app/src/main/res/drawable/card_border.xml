@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bordure -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#2196F3" /> <!-- Couleur de la bordure -->
+            <corners android:radius="10dp" /> <!-- Rayon des coins (même que la CardView) -->
+        </shape>
+    </item>
+    <!-- Fond intérieur (avec marge = épaisseur de la bordure) -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" /> <!-- Couleur de fond de la carte -->
+            <corners android:radius="8dp" /> <!-- Légèrement inférieur pour correspondre -->
+        </shape>
+    </item>
+</layer-list>

@@ -1,10 +1,10 @@
 package com.example.surfspot.Enum;
 
 public enum SurfBreak {
-    OUTER_BANKS("outer banks"),
-    REEF_BREAK("reef break"),
-    BEACH_BREAK("beach break"),
-    POINT_BREAK("point break");
+    OUTER_BANKS("Outer Banks"),
+    REEF_BREAK("Reef Break"),
+    BEACH_BREAK("Beach Break"),
+    POINT_BREAK("Point Break");
 
     private final String value;
 
